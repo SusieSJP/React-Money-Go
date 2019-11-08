@@ -1,0 +1,15 @@
+.form {
+  // make all the children width as full width, if we want to separate the button,
+  // we need to wrap it into a div => not direct children anymore.
+  display: flex;
+  flex-direction: column;
+  // target at all direct children
+  > * {
+    margin-bottom: $m-size;
+  }
+}
+
+.form__error {
+  margin: 0 0 $m-size 0;
+  font-style: italic;
+}

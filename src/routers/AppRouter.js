@@ -1,24 +1,32 @@
 import React from 'react';
 //use the BrowserRouter once to create the new router and use route for every single page
-import { BrowserRouter, Route, Switch, Link, NavLink } from 'react-router-dom';
+import { Router, Route, Switch } from 'react-router-dom';
 import ExpenseDashboaardPage from '../components/ExpenseeDashboardPage';
 import AddExpensePage from '../components/AddExpensePage';
 import EditExpensePage from '../components/EditExpensePage';
 import HelpPage from '../components/HelpPage';
 import NotFoundPage from '../components/NotFoundPage';
-import Header from '../components/Header';
+import LoginPage from '../components/LoginPage';
+import { createBrowserHistory } from 'history';
+import PrivateRoute from './PrivateRoute';
+
+export const history = createBrowserHistory();
+// with export, now we can use it in any places
 
 const AppRouter = () => (
-  <BrowserRouter>
-    <Header />
+  // swich from browserRouter to simple router, after we install history
+  // now we have the access to the history not only in the component.
+  // <BrowserRouter>
+  <Router history={history}>
     <Switch>
-      <Route path="/" component={ExpenseDashboaardPage} exact={true}/>
-      <Route path="/create" component={AddExpensePage}/>
-      <Route path="/edit/:id" component={EditExpensePage}/>
+      <Route path="/" component={LoginPage} exact={true}/>
+      <PrivateRoute path="/dashboard" component={ExpenseDashboaardPage}/>
+      <PrivateRoute path="/create" component={AddExpensePage}/>
+      <PrivateRoute path="/edit/:id" component={EditExpensePage}/>
       <Route path="/help" component={HelpPage}/>
       <Route component={NotFoundPage} />
     </Switch>
-</BrowserRouter>
+  </Router>
 );
 
 export default AppRouter;

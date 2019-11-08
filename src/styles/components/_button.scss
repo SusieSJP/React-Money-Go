@@ -1,0 +1,22 @@
+.button {
+  color: white;
+  display: inline-block; // to ensure that the top and bottom padding have the effect!
+  padding: $s-size $s-size;
+  border: none;
+  font-size: $m-size;
+  text-decoration: none;
+  line-height: 1;
+}
+
+// style modifier, to use together with blue-button but overwrite some of the property
+.button-blue {
+  background: $blue;
+}
+
+.button-grey {
+  background: #888;
+}
+
+.button-noBg {
+  background: none;
+}

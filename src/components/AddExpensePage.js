@@ -1,19 +1,34 @@
 import React from 'react';
 import ExpenseForm from './ExpenseForm';
 import { connect } from 'react-redux';
-import { addExpense } from '../actions/expenses';
+import { startAddExpense } from '../actions/expenses';
 
-const AddExpensePage = (props) => (
-  <div>
-    <h1>Add Expense</h1>
-    <ExpenseForm
-      // the function here is for child to pass up data
-      onSubmit = {(expense) => {
-        props.dispatch(addExpense(expense));
-        props.history.push('/'); // redirect to the URL page
-      }}
-    />
-  </div>
-);
+export class AddExpensePage extends React.Component {
+  onSubmit = (expense) => {
+    this.props.startAddExpense(expense);
+    this.props.history.push('/dashboard');
+  };
+  render() {
+    return (
+      <div>
+        <div className="page-header">
+          <div className="content-container">
+            <h1 className="page-header__title">Add Expense</h1>
+          </div>
+        </div>
+        <div className="content-container">
+          <ExpenseForm
+            // the function here is for child to pass up data
+            onSubmit = { this.onSubmit }
+          />
+        </div>
+      </div>
+    );
+  }
+}
 
-export default connect()(AddExpensePage);
+const mapDispatchToProps = (dispatch) => ({
+  startAddExpense: (expense) => dispatch(startAddExpense(expense))
+});
+
+export default connect(undefined, mapDispatchToProps)(AddExpensePage);

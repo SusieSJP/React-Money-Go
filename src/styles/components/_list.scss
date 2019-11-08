@@ -1,0 +1,64 @@
+.list-header {
+  background: $light-grey;
+  border: 1px solid darken($light-grey, 10%);
+  color: darken($light-grey, 60%);
+  display: flex;
+  justify-content: space-between;
+  padding: $s-size $m-size;
+}
+
+.list-item {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid darken($light-grey, 10%);
+  border-top: none;
+  color: $dark-grey;
+  padding: $s-size;
+  text-decoration: none;
+  transition: background .3s ease;
+  // this would be the same as .list-item:hover {}
+  &:hover {
+    background:$light-grey;
+  }
+  @media (min-width: $desktop-breakpoint) {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: $m-size;
+    align-items: center;
+  }
+}
+
+.list-item--message {
+  align-items: center;
+  justify-content: center;
+  color: darken($light-grey, 50%);
+  &:hover {
+    background: none;
+  }
+}
+
+.list-item__title {
+  margin: 0;
+  word-break: break-all; //break long description
+}
+
+.list-item__subtitle {
+  color: darken($light-grey, 50%);
+  font-size: 1.4rem;
+  font-weight: 500;
+}
+
+.list-item__data {
+  margin: $s-size 0 0 0;
+  @media (min-width: $desktop-breakpoint) {
+    margin: 0;
+    padding-left: $s-size;
+  }
+}
+
+.list-body {
+  margin-bottom: $m-size;
+  @media (min-width: $desktop-breakpoint) {
+    margin-bottom: $l-size;
+  }
+}
