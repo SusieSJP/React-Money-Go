@@ -15,15 +15,7 @@ export default class ExpenseForm extends React.Component {
       error: ''
     };
   }
-  // because we need the default value as well as the data passed down, we use constructor
-  // state = {
-  //   description: '',
-  //   note: '',
-  //   amount: '',
-  //   createdAt: moment(), //this would be the time now
-  //   calendarFocused: false,
-  //   error: ''
-  // };
+
   onDescriptionChange = (e) => {
     const description = e.target.value;
     this.setState(() => ({ description }));

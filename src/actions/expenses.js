@@ -12,6 +12,7 @@ export const addExpense = (expense) => ({
 export const startAddExpense = (expenseData = {}) => {
   return (dispatch, getState) => {
     const uid = getState().auth.uid;
+    console.log(uid);
     const {
       description = '',
       note = '',
@@ -40,7 +41,7 @@ export const removeExpense = ({id} = {}) => ({
 export const startRemoveExpense = ({id} = {}) => {
   return (dispatch, getState) => {
     const uid = getState().auth.uid;
-    database.ref('users/'+uid+'/expenses/' + id).remove().then(() => {
+    database.ref('users/'+ uid +'/expenses/' + id).remove().then(() => {
       dispatch(removeExpense({ id }))})
   };
 };
@@ -54,8 +55,8 @@ export const editExpense = (id, updates) => ({
 
 export const startEditExpense = (id, updates) => {
   return (dispatch, getState) => {
-    const uid = getState().auth.id;
-    return database.ref('users/'+uid+'/expenses/' + id).update(updates).then(() => {
+    const uid = getState().auth.uid;
+    return database.ref('users/'+ uid +'/expenses/' + id).update(updates).then(() => {
       dispatch(editExpense(id, updates))})
   };
 };
