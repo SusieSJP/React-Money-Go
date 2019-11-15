@@ -15,6 +15,10 @@ export default (state = categoriesReducerDefaultState, action) => {
           return category;
         }
       });
+    case 'REMOVE_CATEGORY':
+      return state.filter(({id}) => {
+        return id !== action.id
+      })
     case 'LOAD_CATEGORIES':
       return action.categories
     default:

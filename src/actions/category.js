@@ -6,13 +6,13 @@ export const addCategory = (category) => ({
   category
 });
 
-export const startAddCategory = (categoryData = {}) => {
+export const startAddCategory = (categoryData) => {
   return (dispatch, getState) => {
     const uid = getState().auth.uid;
     const {
-      name = '',
-      color = ''
-    } = categoryData; // deconstruction with default
+      name,
+      color
+    } = categoryData; // deconstruction
 
     const category = {name, color};
     database.ref('users/' + uid + '/categories').push(category).then((ref) => {
@@ -37,6 +37,20 @@ export const startEditCategory = (id, updates) => {
     const uid = getState().auth.uid;
     return database.ref('users/'+ uid +'/categories/' + id).update(updates).then(() => {
       dispatch(editCategory(id, updates))})
+  };
+};
+
+// Remove categories
+export const removeCategory = (id) => ({
+  type: 'REMOVE_CATEGORY',
+  id
+});
+
+export const startRemoveCategory = (id) => {
+  return (dispatch, getState) => {
+    const uid = getState().auth.uid;
+    database.ref('users/'+ uid +'/categories/' + id).remove().then(() => {
+      dispatch(removeCategory(id))});
   };
 };
 

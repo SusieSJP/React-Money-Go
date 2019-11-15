@@ -6,8 +6,7 @@ import CategoryItem from './CategoryItem';
 
 class CategoryPage extends React.Component {
   state = {
-    modalIsOpen: false,
-    selectedCategory: undefined // defined when click the edit button
+    modalIsOpen: false
   }
   openModal = () => {
     this.setState(() => this.state.modalIsOpen = true);
@@ -42,18 +41,12 @@ class CategoryPage extends React.Component {
           </div>
           {
             this.props.categories.map((category) => {
-              return (
-                <CategoryItem
-                  key={category.id}
-                  handleEditCategory={this.handleEditCategory}
-                  {...category}
-                />)
+              return <CategoryItem key={category.id} {...category}/>
             })
           }
           {this.props.categories.length < 5 && <button className="button button-blue vertical-large-margin" onClick={this.openModal}>Add Category</button>}
           <CategoryModal
             isOpen={this.state.modalIsOpen}
-            category={this.state.selectedCategory}
             handleSetCategory={this.handleSetCategory}
             closeModal={this.closeModal}
           />

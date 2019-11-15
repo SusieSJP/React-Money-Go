@@ -40,12 +40,19 @@
 .list-item__title {
   margin: 0;
   word-break: break-all; //break long description
+  margin-right: $s-size;
 }
 
 .list-item__subtitle {
   color: darken($light-grey, 50%);
   font-size: 1.4rem;
   font-weight: 500;
+}
+
+.list-item__section {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 .list-item__data {
