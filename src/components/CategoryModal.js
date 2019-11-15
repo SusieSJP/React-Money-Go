@@ -37,19 +37,24 @@ export default class CategoryModal extends React.Component {
         isOpen={this.props.isOpen}
         contentLabel="Set Category"
         onRequestClose={this.props.closeModal}
+        closeTimeoutMS={700}
+        className="modal"
       >
-        <form onSubmit={this.onSubmit}>
+        <form className="modal__form" onSubmit={this.onSubmit}>
           <input
             type="text"
             placeholder="Category Name"
             value={this.state.name}
             onChange={this.onNameChange}
+            className="modal__input"
           />
           <TwitterPicker
             color={ this.state.color }
             onChangeComplete={ this.handleChangeComplete }
+            triangle="hide"
+            className="modal__picker"
           />
-          <button>Save</button>
+          <button className="button button-grey">Save</button>
         </form>
         {this.state.error && <p>{ this.state.error }</p>}
     </Modal>

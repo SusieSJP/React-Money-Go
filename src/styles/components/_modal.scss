@@ -1,0 +1,42 @@
+.ReactModalPortal > div {
+  opacity: 0;
+}
+
+.ReactModalPortal .ReactModal__Overlay {
+  transition: opacity 700ms ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ReactModalPortal .ReactModal__Overlay--after-open {
+  opacity: 1;
+}
+
+.ReactModalPortal .ReactModal__Overlay--before-close {
+  opacity: 0;
+}
+
+.modal {
+  background: darken($light-grey, 10%);
+  outline: none;
+  text-align: center;
+  padding: $l-size;
+}
+
+.modal__form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 30rem;
+}
+
+.modal__picker {
+  padding: $s-size;
+}
+
+.modal__input {
+  font-size: $m-size;
+  padding: $s-size;
+}
