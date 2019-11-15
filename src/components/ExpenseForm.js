@@ -1,20 +1,18 @@
 import React from 'react';
 import moment from 'moment';
 import { SingleDatePicker } from 'react-dates';
-
+import { Link } from 'react-router-dom';
 
 export default class ExpenseForm extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      description: props.expense ? props.expense.description : '',
-      note: props.expense ? props.expense.note : '',
-      amount: props.expense ? (props.expense.amount/100).toString() : '',
-      createdAt: props.expense ? moment(props.expense.createdAt) : moment(), //this would be the time now
-      calendarFocused: false,
-      error: ''
-    };
-  }
+  state = {
+    description: this.props.expense ? this.props.expense.description : '',
+    note: this.props.expense ? this.props.expense.note : '',
+    amount: this.props.expense ? (this.props.expense.amount/100).toString() : '',
+    createdAt: this.props.expense ? moment(this.props.expense.createdAt) : moment(), //this would be the time now
+    calendarFocused: false,
+    categoryID: this.props.expense ? this.props.expense.categoryID : undefined,
+    error: ''
+  };
 
   onDescriptionChange = (e) => {
     const description = e.target.value;
@@ -39,6 +37,10 @@ export default class ExpenseForm extends React.Component {
   onFocusChange = ({focused}) => {
     this.setState(()=> ({ calendarFocused: focused }))
   }
+  onCategoryChange = (e) => {
+    e.persist();
+    this.setState(() => ({ categoryID: e.target.value }));
+  }
   onSubmit = (event) => {
     event.preventDefault();
     if (!this.state.description || !this.state.amount) {
@@ -49,7 +51,8 @@ export default class ExpenseForm extends React.Component {
         description: this.state.description,
         amount: parseFloat(this.state.amount, 10) * 100,
         createdAt: this.state.createdAt.valueOf(),
-        note: this.state.note
+        note: this.state.note,
+        categoryID: this.state.categoryID
       });
     }
   }
@@ -57,6 +60,22 @@ export default class ExpenseForm extends React.Component {
     return (
         <form className="form" onSubmit={this.onSubmit}>
           {this.state.error && <p className="form__error">{this.state.error}</p>}
+          <div>
+            <select
+              className="select-column"
+              disabled={this.props.categories.length === 0}
+              value={this.state.categoryID}
+              onChange={this.onCategoryChange}>
+                <option value="">--Please choose a category--</option>
+                {
+                  this.props.categories.map((category) => {
+                    return <option key={category.id} value={category.id}>{ category.name }</option>
+                  })
+                }
+            </select>
+            {this.props.categories.length === 0 && <Link className="header__link-grey" to="/setting"><span>Set Categories</span></Link>}
+
+          </div>
           <input
             type="text"
             className="text-input"

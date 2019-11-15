@@ -15,6 +15,7 @@ const EditExpensePage = (props) => {
         <ExpenseForm
           className="form"
           expense={props.expense}
+          categories={props.categories}
           onSubmit={(expense) => {
             props.startEditExpense(props.expense.id, expense);
             props.history.push('/dashboard');
@@ -33,7 +34,8 @@ const mapStateToProps = (state, props) => {
   return {
     expense: state.expenses.find((expense) => {
       return expense.id === props.match.params.id;
-    })
+    }),
+    categories: state.categories
   };
 };
 

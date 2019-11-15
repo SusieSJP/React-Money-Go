@@ -49,9 +49,16 @@ export const removeCategory = (id) => ({
 export const startRemoveCategory = (id) => {
   return (dispatch, getState) => {
     const uid = getState().auth.uid;
-    database.ref('users/'+ uid +'/categories/' + id).remove().then(() => {
-      dispatch(removeCategory(id))});
-  };
+    return database.ref('users/'+ uid +'/categories/' + id).remove().then(() => {
+      database.ref('users/'+ uid +'/expenses')
+      .orderByChild('categoryID')
+      .equalTo(id)
+      .on('child_added',(snap) => {
+        database.ref('users/'+ uid +'/expenses/' + snap.key + '/categoryID').remove().then(() => {
+          dispatch(removeCategory(id))});
+        })
+      });
+    };
 };
 
 // Load categories

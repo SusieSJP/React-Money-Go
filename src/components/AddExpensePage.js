@@ -20,15 +20,18 @@ export class AddExpensePage extends React.Component {
           <ExpenseForm
             // the function here is for child to pass up data
             onSubmit = { this.onSubmit }
+            categories={ this.props.categories }
           />
         </div>
       </div>
     );
   }
 }
-
+const mapStateToProps = (state) => ({
+  categories: state.categories
+});
 const mapDispatchToProps = (dispatch) => ({
   startAddExpense: (expense) => dispatch(startAddExpense(expense))
 });
 
-export default connect(undefined, mapDispatchToProps)(AddExpensePage);
+export default connect(mapStateToProps, mapDispatchToProps)(AddExpensePage);

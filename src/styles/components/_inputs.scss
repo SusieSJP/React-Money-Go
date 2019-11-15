@@ -5,11 +5,17 @@
   @media (min-width: $desktop-breakpoint) {
     margin-bottom: $l-size;
   }
-
 }
 
 .select {
   @extend .text-input;
+}
+
+.select-column {
+  border: 1px solid #cacccd;
+  height: 50px;
+  padding: $s-size;
+  margin-right: $m-size;
 }
 
 .text-area {

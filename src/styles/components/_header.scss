@@ -23,6 +23,14 @@
   margin-right: $m-size;
 }
 
+.header__link-grey {
+  font-weight: bold;
+  color: white;
+  padding: 1rem $s-size;
+  background: #888;
+  text-decoration: none;
+}
+
 .head__content {
   display: flex;
   flex-direction: row;
