@@ -9,7 +9,10 @@ const Header = ({ startLogout }) => (
     <div className="content-container">
       <div className="head__content">
         <Link className="header__title" to="/dashboard"><h1>Money Go</h1></Link>
-        <button className="button button-noBg"onClick={ startLogout }>Log out</button>
+        <div className="header__content">
+          <Link className="header__link" to="/setting"><span>Setting</span></Link>
+          <button className="button button-noBg" onClick={ startLogout }>Log out</button>
+        </div>
       </div>
     </div>
 

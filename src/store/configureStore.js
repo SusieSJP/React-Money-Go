@@ -3,6 +3,7 @@ import thunk from 'redux-thunk';
 import filtersReducer from '../reducers/filters';
 import expensesReducer from '../reducers/expenses';
 import authReducer from '../reducers/auth';
+import categoryReducer from '../reducers/category';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 // Store creation
@@ -12,6 +13,7 @@ export default () => {
     // key is the root state name and the value is the reducer that manages that state
     combineReducers({
       expenses: expensesReducer,
+      categories: categoryReducer,
       filters: filtersReducer,
       auth: authReducer
     }),

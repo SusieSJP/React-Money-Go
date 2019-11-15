@@ -4,11 +4,11 @@ import { Router, Route, Switch } from 'react-router-dom';
 import ExpenseDashboaardPage from '../components/ExpenseeDashboardPage';
 import AddExpensePage from '../components/AddExpensePage';
 import EditExpensePage from '../components/EditExpensePage';
-import HelpPage from '../components/HelpPage';
 import NotFoundPage from '../components/NotFoundPage';
 import LoginPage from '../components/LoginPage';
 import { createBrowserHistory } from 'history';
 import PrivateRoute from './PrivateRoute';
+import CategoryPage from '../components/CategoryPage';
 
 export const history = createBrowserHistory();
 // with export, now we can use it in any places
@@ -23,7 +23,7 @@ const AppRouter = () => (
       <PrivateRoute path="/dashboard" component={ExpenseDashboaardPage}/>
       <PrivateRoute path="/create" component={AddExpensePage}/>
       <PrivateRoute path="/edit/:id" component={EditExpensePage}/>
-      <Route path="/help" component={HelpPage}/>
+      <PrivateRoute path="/setting" component={CategoryPage}/>
       <Route component={NotFoundPage} />
     </Switch>
   </Router>

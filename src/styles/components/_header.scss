@@ -8,10 +8,24 @@
   h1 {
     margin: 0;
   }
+  p {
+    margin: 0;
+  }
+}
+
+.header__link {
+  font-weight: bold;
+  color: $dark-blue;
+  padding: 1rem $s-size;
+  background: white;
+  text-decoration: none;
+  border-radius: 15%;
+  margin-right: $m-size;
 }
 
 .head__content {
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
   align-content: center;
   padding: $s-size 0;

@@ -9,6 +9,7 @@ import 'react-dates/lib/css/_datepicker.css';
 import { firebase } from './firebase/firebase';
 import { startLoadExpense } from './actions/expenses';
 import { login, logout } from './actions/auth';
+import { startLoadCategories } from './actions/category';
 
 const store = configureStore();
 
@@ -31,7 +32,9 @@ ReactDOM.render(<p>Loading...</p>, document.getElementById('app'));
 firebase.auth().onAuthStateChanged((user) => {
   if (user) {
     store.dispatch(login(user.uid));
-    store.dispatch(startLoadExpense()).then(() => {
+    store.dispatch(startLoadExpense())
+      .then(() => store.dispatch(startLoadCategories()))
+      .then(() => {
       renderApp();
       // only redirect the user if he just logged in.
       if (history.location.pathname === "/") {
@@ -39,7 +42,7 @@ firebase.auth().onAuthStateChanged((user) => {
       }
     });
   } else {
-    console.log('logout');
+    // user has not signed in
     store.dispatch(logout());
     renderApp();
     history.push('/');
