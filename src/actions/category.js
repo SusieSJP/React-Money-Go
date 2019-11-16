@@ -1,4 +1,5 @@
 import database from '../firebase/firebase';
+import { editExpense } from '../actions/expenses'
 
 // Add category
 export const addCategory = (category) => ({
@@ -54,8 +55,10 @@ export const startRemoveCategory = (id) => {
       .orderByChild('categoryID')
       .equalTo(id)
       .on('child_added',(snap) => {
-        database.ref('users/'+ uid +'/expenses/' + snap.key + '/categoryID').remove().then(() => {
+        let expenseID = snap.key
+        database.ref('users/'+ uid +'/expenses/' + snap.key).update({"categoryID": "uncategorized"}).then(() => {
           dispatch(removeCategory(id))});
+          dispatch(editExpense(expenseID, {"categoryID": "uncategorized"}));
         })
       });
     };

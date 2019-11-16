@@ -12,6 +12,8 @@ class CategoryItem extends React.Component {
     this.setState(() => this.state.modalIsOpen = false);
   }
   handleSetCategory = (category) => {
+    console.log('edit the category to category: ',category);
+    console.log('id of the edited category is: ',this.props.id);
     this.props.startEditCategory(this.props.id, category);
     this.closeModal();
   }

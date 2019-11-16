@@ -8,6 +8,7 @@ const ExpenseDashboaardPage = () => (
     <ExpensesSummary />
     <ExpenseFilters />
     <ExpenseList />
+    <div className="footer"></div>
   </div>
 );
 

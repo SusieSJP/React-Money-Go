@@ -55,6 +55,12 @@
   align-items: center;
 }
 
+.list-item__section > span {
+  margin-right: $m-size;
+  font-weight: 500;
+  font-style: italic;
+}
+
 .list-item__data {
   margin: $s-size 0 0 0;
   @media (min-width: $desktop-breakpoint) {
@@ -69,3 +75,4 @@
     margin-bottom: $l-size;
   }
 }
+

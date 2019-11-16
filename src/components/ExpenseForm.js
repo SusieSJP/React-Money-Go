@@ -10,7 +10,7 @@ export default class ExpenseForm extends React.Component {
     amount: this.props.expense ? (this.props.expense.amount/100).toString() : '',
     createdAt: this.props.expense ? moment(this.props.expense.createdAt) : moment(), //this would be the time now
     calendarFocused: false,
-    categoryID: this.props.expense ? this.props.expense.categoryID : undefined,
+    categoryID: this.props.expense ? this.props.expense.categoryID : 'uncategorized',
     error: ''
   };
 
@@ -39,6 +39,7 @@ export default class ExpenseForm extends React.Component {
   }
   onCategoryChange = (e) => {
     e.persist();
+    console.log('target value from category change:', e.target.value)
     this.setState(() => ({ categoryID: e.target.value }));
   }
   onSubmit = (event) => {
@@ -64,11 +65,13 @@ export default class ExpenseForm extends React.Component {
             <select
               className="select-column"
               disabled={this.props.categories.length === 0}
-              value={this.state.categoryID}
+              value={this.state.categoryID === "uncategorized" ? undefined : this.state.categoryID}
               onChange={this.onCategoryChange}>
-                <option value="">--Please choose a category--</option>
+                <option value="uncategorized">--Please choose a category--</option>
                 {
-                  this.props.categories.map((category) => {
+                  this.props.categories.filter((category) => {
+                    return category.id !== "uncategorized"
+                  }).map((category) => {
                     return <option key={category.id} value={category.id}>{ category.name }</option>
                   })
                 }

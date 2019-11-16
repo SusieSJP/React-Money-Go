@@ -25,10 +25,10 @@ class CategoryPage extends React.Component {
         <div className="page-header">
           <div className="content-container">
           {
-            this.props.categories.length === 0 ? (
+            this.props.categories.length === 1 ? (
               <h1 className="page-header__title">Set Categories</h1>
             ) : (
-              <h1 className="page-header__title">Currently <span>{this.props.categories.length}</span> categories, with <span>{5-this.props.categories.length}</span> remaining.</h1>
+              <h1 className="page-header__title">Currently <span>{this.props.categories.length - 1}</span> categories, with <span>{6-this.props.categories.length}</span> remaining.</h1>
             )
           }
           </div>
@@ -40,11 +40,13 @@ class CategoryPage extends React.Component {
             <div className="show-for-desktop">Color</div>
           </div>
           {
-            this.props.categories.map((category) => {
+            this.props.categories.filter((category) => {
+              return category.id !== "uncategorized"
+            }).map((category) => {
               return <CategoryItem key={category.id} {...category}/>
             })
           }
-          {this.props.categories.length < 5 && <button className="button button-blue vertical-large-margin" onClick={this.openModal}>Add Category</button>}
+          {this.props.categories.length < 6 && <button className="button button-blue vertical-large-margin" onClick={this.openModal}>Add Category</button>}
           <CategoryModal
             isOpen={this.state.modalIsOpen}
             handleSetCategory={this.handleSetCategory}

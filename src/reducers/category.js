@@ -8,7 +8,7 @@ export default (state = categoriesReducerDefaultState, action) => {
       return state.map((category) => {
         if (category.id === action.id) {
           return {
-            category,
+            ...category,
             ...action.updates
           }
         } else {

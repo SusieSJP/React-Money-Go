@@ -18,17 +18,31 @@ const ExpenseList = (props) => (
           </div>
         ) : (
               props.expenses.map((expense) => {
-              return <ExpenseListItem key={expense.id} {...expense} />;
+                let colorArr = props.categories.filter((category) => category.id === expense.categoryID);
+                return <ExpenseListItem key={expense.id} color={colorArr[0].color} {...expense} />;
             })
           )
       }
     </div>
-
+    <div className="list-item__section">
+      <span>Notes: </span>
+      {
+        props.categories.map((category) => {
+          return (
+            <div key={category.id} className="list-item__section">
+              <div className="color-circle-small" style={{background: `${category.color}`}}></div>
+              <span>{category.name} </span>
+            </div>
+          )
+        })
+      }
+    </div>
   </div>
 );
 const mapStateToProps = (state) => {
   return {
-    expenses: selectedExpenses(state.expenses, state.filters)
+    expenses: selectedExpenses(state.expenses, state.filters),
+    categories: state.categories
   };
 }
 export default connect(mapStateToProps)(ExpenseList);

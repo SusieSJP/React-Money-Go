@@ -12,7 +12,6 @@ export const addExpense = (expense) => ({
 export const startAddExpense = (expenseData = {}) => {
   return (dispatch, getState) => {
     const uid = getState().auth.uid;
-    console.log(uid);
     const {
       description = '',
       note = '',
@@ -31,7 +30,6 @@ export const startAddExpense = (expenseData = {}) => {
 
   };
 };
-
 
 // Remove expense
 export const removeExpense = ({id} = {}) => ({
