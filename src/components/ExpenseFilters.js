@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { setTextFilter, sortByDate, sortByAmount, setStartDate, setEndDate } from '../actions/filters';
+import { setTextFilter, sortByDate, sortByAmount, setStartDate, setEndDate, filterOnCategory } from '../actions/filters';
 import { DateRangePicker } from 'react-dates';
 
 class ExpenseFilters extends React.Component {
@@ -14,6 +14,11 @@ class ExpenseFilters extends React.Component {
   onFocusChange = (calenderFocused) => {
     this.setState(() => ({ calenderFocused}));
   };
+  onCategoryChange = (e) => {
+    e.persist();
+    this.props.dispatch(filterOnCategory(e.target.value));
+  };
+
   render() {
     return (
       <div className="content-container">
@@ -36,8 +41,8 @@ class ExpenseFilters extends React.Component {
                 this.props.dispatch(sortByDate());
               }
             }}>
-              <option value="date">Date</option>
-              <option value="amount">Amount</option>
+              <option value="date">Sort by Date</option>
+              <option value="amount">Sort by Amount</option>
             </select>
           </div>
           <div className="input-group__item">
@@ -52,6 +57,19 @@ class ExpenseFilters extends React.Component {
             isOutsideRange={() => false}
             />
           </div>
+          <div className="input-group__item">
+            <select
+              className="select"
+              onChange={this.onCategoryChange}
+            >
+              <option value="">Categories</option>
+              {
+                this.props.categories.map((category) => {
+                  return <option key={category.id} value={category.id}>{category.name}</option>
+                })
+              }
+            </select>
+          </div>
         </div>
       </div>
     )
@@ -60,7 +78,8 @@ class ExpenseFilters extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    filters: state.filters
+    filters: state.filters,
+    categories: state.categories
   };
 };
 export default connect(mapStateToProps)(ExpenseFilters);

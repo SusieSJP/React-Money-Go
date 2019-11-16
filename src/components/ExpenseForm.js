@@ -39,7 +39,6 @@ export default class ExpenseForm extends React.Component {
   }
   onCategoryChange = (e) => {
     e.persist();
-    console.log('target value from category change:', e.target.value)
     this.setState(() => ({ categoryID: e.target.value }));
   }
   onSubmit = (event) => {

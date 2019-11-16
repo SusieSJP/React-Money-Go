@@ -2,14 +2,21 @@ import moment from 'moment';
 
 // Filters Reducer:
 // set text filter/ sort by date or amount/ query expense in a specific period
+// filter expense on categories
 const filtersReducerDefaultState = {
   text: '',
   sortBy: 'date',
   startDate: moment().startOf('month'),
-  endDate: moment().endOf('month')
+  endDate: moment().endOf('month'),
+  category: ''
 };
 const filtersReducer = (state = filtersReducerDefaultState, action) => {
   switch (action.type) {
+    case 'FILTER_ON_CATEGORY':
+      return {
+        ...state,
+        category: action.category
+      };
     case 'SET_TEXT_FILTER':
       return {
         ...state,
