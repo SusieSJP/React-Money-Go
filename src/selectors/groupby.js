@@ -26,8 +26,11 @@ export const groupbyExpenses = (expenses, { year, month, category }) => {
       labels,
       datasets: [
         {
-          backgroundColor: '#c2c2c2',
+          backgroundColor: '#d2d2d2',
+          borderColor: '#727272',
+          borderWidth: 2,
           hoverBackgroundColor: 'rgba(255,99,132,0.4)',
+          hoverBorderColor: 'rgba(255,99,132,1)',
           data: monthlyTotal
         }
       ]
@@ -60,8 +63,11 @@ export const groupbyExpenses = (expenses, { year, month, category }) => {
       datasets: [
         {
           label: false,
-          backgroundColor: '#c2c2c2',
+          backgroundColor: '#d2d2d2',
+          borderColor: '#727272',
+          borderWidth: 2,
           hoverBackgroundColor: 'rgba(255,99,132,0.4)',
+          hoverBorderColor: 'rgba(255,99,132,1)',
           data: dailyTotal
         }
       ]
