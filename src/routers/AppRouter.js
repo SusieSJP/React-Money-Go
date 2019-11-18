@@ -9,6 +9,7 @@ import LoginPage from '../components/LoginPage';
 import { createBrowserHistory } from 'history';
 import PrivateRoute from './PrivateRoute';
 import CategoryPage from '../components/CategoryPage';
+import ChartsPage from '../components/ChartsPage';
 
 export const history = createBrowserHistory();
 // with export, now we can use it in any places
@@ -24,6 +25,7 @@ const AppRouter = () => (
       <PrivateRoute path="/create" component={AddExpensePage}/>
       <PrivateRoute path="/edit/:id" component={EditExpensePage}/>
       <PrivateRoute path="/setting" component={CategoryPage}/>
+      <PrivateRoute path="/charts" component={ChartsPage}/>
       <Route component={NotFoundPage} />
     </Switch>
   </Router>

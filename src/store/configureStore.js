@@ -4,6 +4,7 @@ import filtersReducer from '../reducers/filters';
 import expensesReducer from '../reducers/expenses';
 import authReducer from '../reducers/auth';
 import categoryReducer from '../reducers/category';
+import groupbyReducer from '../reducers/groupby';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 // Store creation
@@ -15,7 +16,8 @@ export default () => {
       expenses: expensesReducer,
       categories: categoryReducer,
       filters: filtersReducer,
-      auth: authReducer
+      auth: authReducer,
+      groupby: groupbyReducer
     }),
     composeEnhancers(applyMiddleware(thunk))
   );
