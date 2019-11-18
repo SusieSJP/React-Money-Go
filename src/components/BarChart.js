@@ -1,7 +1,7 @@
 import { Bar } from 'react-chartjs-2';
 import React from 'react';
 import { connect } from 'react-redux';
-import groupbyExpenses from '../selectors/groupby';
+import { groupbyExpenses } from '../selectors/groupby';
 
 class BarChart extends React.Component {
   options={

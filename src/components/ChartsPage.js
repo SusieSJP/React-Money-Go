@@ -1,6 +1,7 @@
 import React from 'react';
 import ChartFilters from './ChartFilters';
 import BarChart from './BarChart';
+import DonutChart from './DonutChart';
 
 export default class ChartsPage extends React.Component {
   render() {
@@ -13,12 +14,12 @@ export default class ChartsPage extends React.Component {
         </div>
         <ChartFilters />
         <div className="content-container">
-          <div className="list-item__section">
+          <div className="chart-container">
             <div className="chart">
               <BarChart />
             </div>
-            <div className="chart">
-              <BarChart/>
+            <div className="pie-chart">
+              <DonutChart/>
             </div>
           </div>
 
